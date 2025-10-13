@@ -1,0 +1,39 @@
+# 1) Ignore backup folder
+backup/
+
+# 2) Ignore saved models and embeddings in models directory
+models/*.h5
+models/*.pkl
+models/*.pt
+models/*.bin
+models/*.npy
+models/*.npz
+models/*.joblib
+models/*.sav
+models/*.ckpt
+# (Ignore all files in models directory, if you prefer)
+# models/*
+
+# 3) Ignore all subfolders and files in students directory
+students/
+
+# 4) Ignore all images in test_images directory
+test_images/*.jpg
+test_images/*.jpeg
+test_images/*.png
+test_images/*.bmp
+test_images/*.gif
+test_images/*.tiff
+
+# 5) Ignore __pycache__ directory
+__pycache__/
+
+# Optional: common Python ignores
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.DS_Store
+.env
+.vscode/
+.idea/
