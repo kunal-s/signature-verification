@@ -10,8 +10,8 @@ from model import SiameseResNet
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 batch_size = 32
-lr = 5e-4
-epochs = 20
+lr = 1e-4
+epochs = 30
 margin = 1.0
 
 # ----------------------------
@@ -51,7 +51,7 @@ class StudentPairsDataset(Dataset):
         if self.augment:
             aug = transforms.Compose([
                 transforms.RandomRotation(10),
-                transforms.RandomResizedCrop(128, scale=(0.9,1.0)),
+                transforms.RandomResizedCrop(128, scale=(0.7,1.0)),
                 transforms.RandomHorizontalFlip()
             ])
             img1 = aug(img1)
