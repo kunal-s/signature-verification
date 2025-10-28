@@ -1,8 +1,3 @@
-Sure — here’s the **complete, polished `README.md`** for your **Signature Identification System**, written in clean and professional Markdown format 👇
-
----
-
-```markdown
 # 🖋️ Signature Identification System (Siamese ResNet-based)
 
 An intelligent **signature verification and identification system** built using a **Siamese ResNet architecture**.  
@@ -30,11 +25,10 @@ This system is optimized for **limited user data** (as few as 5 samples per user
 Signature-Identification/
 │
 ├── dataset.py                 # Loads and augments signature data
-├── augment_students.py        # Augments student signatures only
-├── model.py           # Defines Siamese ResNet model
+├── model.py                   # Defines Siamese ResNet model
 ├── train.py                   # Trains the model using CEDAR + student data
-├── verify.py                  # Verifies a new signature against enrolled users
-├── utils.py                   # Helper functions (distance calc, transforms, etc.)
+├── predict.py                 # Verifies a new signature against enrolled users
+├── enroll.py                  # Scans test images and saves embeddings
 │
 ├── signatures/                # Public signature dataset (already large)
 │── students/                  # Contains student signatures (only 5 per user)
@@ -44,7 +38,7 @@ Signature-Identification/
 │
 ├── models/
 │   ├── student_embeddings.pkl # Saved student embeddings after enrollment
-    └── siamese_resnet18.pth   # Trained model weights
+    └── siamese_resnet.pth   # Trained model weights
 
 ````
 
@@ -67,17 +61,6 @@ pip install -r requirements.txt
 
 ---
 
-## 🧠 Data Augmentation
-
-To increase robustness for students with few samples (only 5 per user):
-
-```bash
-python augment_students.py
-```
-
-This will automatically generate additional augmented images for each student (rotations, shifts, zooms, contrast adjustments, etc.).
-
----
 
 ## 🏋️‍♂️ Training the Model
 
