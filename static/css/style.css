@@ -1,0 +1,48 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.signature-upload-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.preview-image {
+    max-width: 100%;
+    max-height: 300px;
+    margin: 1rem 0;
+}
+
+.result-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+}
+
+.score-display {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.match-indicator {
+    height: 10px;
+    border-radius: 5px;
+    margin: 1rem 0;
+    background: linear-gradient(to right, #dc3545, #ffc107, #28a745);
+}
+
+.match-marker {
+    width: 20px;
+    height: 20px;
+    background: #343a40;
+    border-radius: 50%;
+    position: relative;
+    top: -5px;
+    transform: translateX(-50%);
+}

@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Verify Signature{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="signature-upload-form">
+            <h2 class="text-center mb-4">Signature Verification</h2>
+            
+            <form action="{{ url_for('verify_signature') }}" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="signature" class="form-label">Upload Signature Image</label>
+                    <input type="file" class="form-control" id="signature" name="signature" accept=".jpg,.jpeg,.png" required onchange="previewImage(event)">
+                </div>
+
+                <div class="text-center mb-3" id="preview-container" style="display: none;">
+                    <img id="signature-preview" class="preview-image">
+                </div>
+
+                <div class="mb-3">
+                    <label for="client" class="form-label">Select Client to Compare Against</label>
+                    <select class="form-select" id="client" name="client" required>
+                        <option value="">Choose a client...</option>
+                        {% for client in clients %}
+                            <option value="{{ client }}">{{ client }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Verify Signature</button>
+                </div>
+            </form>
+        </div>
+
+        {% if result %}
+        <div class="result-card">
+            <h3 class="text-center mb-3">Verification Result</h3>
+            
+            <div class="score-display">
+                Match Score: {{ result.score }}/10
+            </div>
+
+            <div class="match-indicator">
+                <div class="match-marker" style="margin-left: {{ result.score * 10 }}%;"></div>
+            </div>
+
+            <div class="text-center mt-3">
+                <p class="h5 {% if result.score >= 7 %}text-success{% elif result.score >= 5 %}text-warning{% else %}text-danger{% endif %}">
+                    {% if result.score >= 7 %}
+                        Strong Match
+                    {% elif result.score >= 5 %}
+                        Possible Match
+                    {% else %}
+                        No Match
+                    {% endif %}
+                </p>
+            </div>
+
+            <!-- Side-by-side images: uploaded (left) and client example (right) -->
+            <div class="row mt-4">
+                <div class="col-md-6 text-center">
+                    <h6>Uploaded Signature</h6>
+                    <img src="{{ url_for('uploaded_file', filename=result.uploaded_filename) }}" class="preview-image img-fluid img-thumbnail" alt="Uploaded signature">
+                </div>
+                <div class="col-md-6 text-center">
+                    <h6>Client ({{ result.client }}) Example</h6>
+                    <img src="{{ url_for('student_image', client=result.client) }}" class="preview-image img-fluid img-thumbnail" alt="Client signature">
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function previewImage(event) {
+    const preview = document.getElementById('signature-preview');
+    const container = document.getElementById('preview-container');
+    const file = event.target.files[0];
+    
+    if (file) {
+        preview.src = URL.createObjectURL(file);
+        container.style.display = 'block';
+    } else {
+        container.style.display = 'none';
+    }
+}
+</script>
+{% endblock %}
