@@ -1,5 +1,6 @@
 # 1) Ignore backup folder
 backup/
+uploads/
 
 # 2) Ignore saved models and embeddings in models directory
 models/*.h5
