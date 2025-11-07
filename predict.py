@@ -12,7 +12,7 @@ from model import SiameseResNet
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model_path = "models/siamese_resnet.pth"
 embeddings_path = "models/student_embeddings.pkl"
-query_path = "test_images/taslim2.jpg"  # Change to your test file
+query_path = "test_images/student1.jpg"  # Change to your test file
 threshold = 0.6  # Adjust based on validation
 
 # ----------------------------
